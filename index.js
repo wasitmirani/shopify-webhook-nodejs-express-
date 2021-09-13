@@ -13,6 +13,10 @@ app.use(bodyParser.urlencoded({
 }));
 
 
+
+app.get('/', (req, res) => {
+    res.send("hello world");
+});
 /*
 In your Shopify store under..
 Settings->Notifications
@@ -31,7 +35,7 @@ app.post('/webhook/order/create', (req, res) => {
   console.log(theData);
 });
 
-const portToListenOn = 3800;
+const portToListenOn = 80;
 
 /*
 On your server run
