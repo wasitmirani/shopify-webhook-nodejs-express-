@@ -19,20 +19,10 @@ app.get('/',(req, res) => {
 
 res.send("this is nodejs");
 });
-/*
-In your Shopify store under..
-Settings->Notifications
-Click "Create a webhook"
-- Choose your event
-- Leave the format as JSON
-- set the URL with your IP address to your server so it's something like http://123.345.11.22:3800/your-path
-Then update the path "your-path" below to match, as well as the port number below.
-*/
-app.post('/webhook/order/create', (req, res) => {
-  // let Shopify know we received the order details ok
-  res.send('OK');
 
-  // the body of the data received
+app.post('/webhook/order/create', (req, res) => {
+  
+  res.send('OK');
   const theData = req.body;
   console.log(theData);
 });
