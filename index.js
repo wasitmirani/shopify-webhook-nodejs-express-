@@ -1,6 +1,6 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-
+const axios = require('axios').default;
 const app = express();
 const port =process.env.PORT || 3000;
 
@@ -24,20 +24,20 @@ app.post('/webhook/order/create', (req, res) => {
   
   res.send('OK');
   let res_data = req.body;
-  let products_data=res_data.line_items.map((item)=>{
-    const product={
-      'id':item.id,
-      'title':item.title,
-      'quantity':item.quantity,
-      'sku':item.sku,
-      'price':item.price,
-    }
-    return product;
-  });
+  // let products_data=res_data.line_items.map((item)=>{
+  //   const product={
+  //     'id':item.id,
+  //     'title':item.title,
+  //     'quantity':item.quantity,
+  //     'sku':item.sku,
+  //     'price':item.price,
+  //   }
+  //   return product;
+  // });
 
   let order;
   order=[
-      {'order_id':res_data.id,
+      {'orderId':res_data.id,
        'email':res_data.email,
        'cancel_reason':res_data.cancel_reason,
        'cancelled_at':res_data.cancelled_at,
@@ -48,12 +48,18 @@ app.post('/webhook/order/create', (req, res) => {
        'phone':res_data.phone,
        'total_discounts':res_data.total_discounts,
        'order_status_url':res_data.order_status_url,
-       'note':res_data.note,
-       'total_price':res_data.total_price,
-       'products':products,
+       'remarks':res_data.note,
+       'amount':res_data.total_price,
+      //  'products':products,
       }];
-  console.log("order",order);
-  console.log("product",products_data);
+      axios.post('/https://analytica.neem.pro/api/get/shopify-webhook/order', order)
+      .then(function (response) {
+        console.log(response);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  // console.log("product",products_data);
 });
 
 
