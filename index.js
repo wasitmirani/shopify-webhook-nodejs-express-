@@ -24,7 +24,7 @@ app.post('/webhook/order/create', (req, res) => {
   
   res.send('OK');
   let res_data = req.body;
-  let products=res_data.line_items.map((item)=>{
+  let products_data=res_data.line_items.map((item)=>{
     const product={
       'id':item.id,
       'title':item.title,
@@ -34,7 +34,9 @@ app.post('/webhook/order/create', (req, res) => {
     }
     return product;
   });
+  let products;
   let order;
+  products.push(products_data);
   order=[
       {'order_id':res_data.id,
        'email':res_data.email,
