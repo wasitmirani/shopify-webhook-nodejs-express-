@@ -23,8 +23,8 @@ res.send("this is nodejs");
 app.post('/webhook/order/create', (req, res) => {
   
   res.send('OK');
-  const res = req.body;
-  let products=res.line_items.map((item)=>{
+  let res_data = req.body;
+  let products=res_data.line_items.map((item)=>{
     const product={
       'id':item.id,
       'title':item.title,
@@ -36,19 +36,19 @@ app.post('/webhook/order/create', (req, res) => {
   });
   let order;
   order=[
-      {'order_id':res.id,
-       'email':res.email,
-       'cancel_reason':res.cancel_reason,
-       'cancelled_at':res.cancelled_at,
-       'created_at':res.created_at,
-       'current_subtotal_price':res.current_subtotal_price,
-       'current_total_price':res.current_total_price,
-       'order_number':res.order_number,
-       'phone':res.phone,
-       'total_discounts':res.total_discounts,
-       'order_status_url':res.order_status_url,
-       'note':res.note,
-       'total_price':res.total_price,
+      {'order_id':res_data.id,
+       'email':res_data.email,
+       'cancel_reason':res_data.cancel_reason,
+       'cancelled_at':res_data.cancelled_at,
+       'created_at':res_data.created_at,
+       'current_subtotal_price':res_data.current_subtotal_price,
+       'current_total_price':res_data.current_total_price,
+       'order_number':res_data.order_number,
+       'phone':res_data.phone,
+       'total_discounts':res_data.total_discounts,
+       'order_status_url':res_data.order_status_url,
+       'note':res_data.note,
+       'total_price':res_data.total_price,
        'products':products,
       }];
   console.log("order",order);
