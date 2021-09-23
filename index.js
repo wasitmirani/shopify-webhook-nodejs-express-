@@ -34,9 +34,8 @@ app.post('/webhook/order/create', (req, res) => {
     }
     return product;
   });
-  let products;
+
   let order;
-  products.push(products_data);
   order=[
       {'order_id':res_data.id,
        'email':res_data.email,
@@ -54,6 +53,7 @@ app.post('/webhook/order/create', (req, res) => {
        'products':products,
       }];
   console.log("order",order);
+  console.log("product",products_data);
 });
 
 
