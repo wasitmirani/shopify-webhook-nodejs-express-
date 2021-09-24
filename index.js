@@ -59,7 +59,7 @@ app.post('/webhook/order/create', (req, res) => {
        'order_status_url':res_data.order_status_url,
        'remarks':res_data.note,
        'amount':res_data.total_price,
-       'products':JSON.parse(products_data),
+       'products':JSON.stringify(products_data),
       }];
 
       console.log(order)
