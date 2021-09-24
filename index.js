@@ -35,8 +35,7 @@ app.post('/webhook/order/create', (req, res) => {
     }
   });
   console.log(products_data);
-  let order;
-  order=[
+  let order=[
       {'orderId':res_data.id,
        'email':res_data.email,
        'cancel_reason':res_data.cancel_reason,
@@ -60,7 +59,7 @@ app.post('/webhook/order/create', (req, res) => {
        'order_status_url':res_data.order_status_url,
        'remarks':res_data.note,
        'amount':res_data.total_price,
-       'products':products,
+       'products':products_data,
       }];
 
       console.log(order)
