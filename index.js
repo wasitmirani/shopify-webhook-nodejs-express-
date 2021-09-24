@@ -17,7 +17,7 @@ app.use(bodyParser.urlencoded({
 
 app.get('/',(req, res) => {
 
-res.send("this is nodejs");
+res.send("hello world");
 });
 
 app.post('/webhook/order/create', (req, res) => {
