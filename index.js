@@ -59,15 +59,7 @@ app.post('/webhook/order/create', (req, res) => {
        'order_status_url':res_data.order_status_url,
        'remarks':res_data.note,
        'amount':res_data.total_price,
-       'products':res_data.line_items.map((item)=>{
-                return {
-                  'id':item.id,
-                  'title':item.title,
-                  'quantity':item.quantity,
-                  'sku':item.sku,
-                  'price':item.price,
-                }
-              }),
+       'products':JSON.parse(products_data),
       }];
 
       console.log(order)
