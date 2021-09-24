@@ -65,7 +65,7 @@ app.post('/webhook/order/create', (req, res) => {
       console.log(order)
       axios.post('/https://analytica.neem.pro/api/get/shopify-webhook/order', order)
       .then(function (response) {
-        console.log(response.body);
+        console.log(response.data);
       })
       .catch(function (error) {
         console.log(error);
