@@ -35,7 +35,7 @@ app.post('/webhook/order/create', (req, res) => {
     }
   });
   console.log(products_data);
-  let order=[
+  let order=
       {'orderId':res_data.id,
        'email':res_data.email,
        'cancel_reason':res_data.cancel_reason,
@@ -60,7 +60,7 @@ app.post('/webhook/order/create', (req, res) => {
        'remarks':res_data.note,
        'amount':res_data.total_price,
        'products':JSON.stringify(products_data),
-      }];
+      };
 
       console.log(order)
       axios.post('/https://analytica.neem.pro/api/get/shopify-webhook/order', order)
