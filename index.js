@@ -24,6 +24,7 @@ app.post('/webhook/order/create', (req, res) => {
   
   res.send('OK');
   let res_data = req.body;
+console.log(res_data);
   // let products_data=res_data.line_items.map((item)=>{
   //   const product={
   //     'id':item.id,
@@ -52,13 +53,13 @@ app.post('/webhook/order/create', (req, res) => {
        'amount':res_data.total_price,
       //  'products':products,
       }];
-      axios.post('/https://analytica.neem.pro/api/get/shopify-webhook/order', order)
-      .then(function (response) {
-        console.log(response);
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
+      // axios.post('/https://analytica.neem.pro/api/get/shopify-webhook/order', order)
+      // .then(function (response) {
+      //   console.log(response);
+      // })
+      // .catch(function (error) {
+      //   console.log(error);
+      // });
   // console.log("product",products_data);
 });
 
