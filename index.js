@@ -35,9 +35,8 @@ app.post('/webhook/order/create', (req, res) => {
     }
   });
   console.log(products_data);
-  let order=
-      {'orderId':res_data.id,
-       'email':res_data.email,
+  let order={'orderId':res_data.id,
+      //  'email':res_data.email,
        'cancel_reason':res_data.cancel_reason,
        'shippingAddress':res_data.shipping_address.address1+" "+res_data.shipping_address.address2,
        'shippingZip':res_data.shipping_address.zip,
@@ -65,10 +64,10 @@ app.post('/webhook/order/create', (req, res) => {
       console.log(order)
       axios.post('https://analytica.neem.pro/api/get/shopify-webhook/order', order)
       .then(function (response) {
-        console.log(response);
+        console.log("res",response.data);
       })
       .catch(function (error) {
-        console.log(error);
+        console.log("error",error);
       });
   // console.log("product",products_data);
 });
