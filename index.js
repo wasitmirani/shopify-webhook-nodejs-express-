@@ -24,23 +24,32 @@ app.post('/webhook/order/create', (req, res) => {
   
   res.send('OK');
   let res_data = req.body;
-console.log(res_data);
-  // let products_data=res_data.line_items.map((item)=>{
-  //   const product={
-  //     'id':item.id,
-  //     'title':item.title,
-  //     'quantity':item.quantity,
-  //     'sku':item.sku,
-  //     'price':item.price,
-  //   }
-  //   return product;
-  // });
-
+// console.log(res_data);
+  let products_data=res_data.line_items.map((item)=>{
+    return {
+      'id':item.id,
+      'title':item.title,
+      'quantity':item.quantity,
+      'sku':item.sku,
+      'price':item.price,
+    }
+  });
+  console.log(products_data);
   let order;
   order=[
       {'orderId':res_data.id,
        'email':res_data.email,
        'cancel_reason':res_data.cancel_reason,
+       'shippingAddress':res_data.shipping_address.address1+" "+res_data.shipping_address.address2,
+       'shippingZip':res_data.shipping_address.zip,
+       'shippingCity':res_data.shipping_address.city,
+       'shippingState':res_data.shipping_address.province,
+       'shippingCountry':res_data.shipping_address.country_code,
+       'customerPhone':res_data.shipping_address.phone,
+       'paymentType':res_data.processing_method,
+       'deliveryType':null,
+
+       'customerName':res_data.shipping_address.name,
        'cancelled_at':res_data.cancelled_at,
        'created_at':res_data.created_at,
        'current_subtotal_price':res_data.current_subtotal_price,
@@ -51,8 +60,10 @@ console.log(res_data);
        'order_status_url':res_data.order_status_url,
        'remarks':res_data.note,
        'amount':res_data.total_price,
-      //  'products':products,
+       'products':products,
       }];
+
+      console.log(order)
       // axios.post('/https://analytica.neem.pro/api/get/shopify-webhook/order', order)
       // .then(function (response) {
       //   console.log(response);
