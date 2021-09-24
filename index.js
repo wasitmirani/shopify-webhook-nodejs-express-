@@ -29,8 +29,8 @@ app.post('/webhook/order/create', (req, res) => {
     return {
       'id':item.id,
       'title':item.title,
-      'quantity':item.quantity,
-      'sku':item.sku,
+      'qty':item.quantity,
+      'sku':item.sku ? item.sku : "9998887799",
       'price':item.price,
     }
   });
@@ -41,11 +41,11 @@ app.post('/webhook/order/create', (req, res) => {
        'shippingAddress':res_data.shipping_address.address1+" "+res_data.shipping_address.address2,
        'shippingZip':res_data.shipping_address.zip,
        'shippingCity':res_data.shipping_address.city,
-       'shippingState':res_data.shipping_address.province,
+       'shippingState':res_data.shipping_address.province ? res_data.shipping_address.province : "SD" ,
        'shippingCountry':res_data.shipping_address.country_code,
        'customerPhone':res_data.shipping_address.phone,
        'paymentType':res_data.processing_method,
-       'deliveryType':null,
+       'deliveryType':"test",
 
        'customerName':res_data.shipping_address.name,
        'cancelled_at':res_data.cancelled_at,
